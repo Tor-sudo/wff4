@@ -24,7 +24,7 @@ function proxy(req, res) {
   const { url, jpeg, bw, l } = req.query;
   if (!url) {
 
-        return res.end(`1we23`);
+        return res.send(`1we23`);
   }
   
   const urls = Array.isArray(url) ? url.join('&url=') : url;
