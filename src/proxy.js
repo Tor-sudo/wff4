@@ -24,7 +24,18 @@ function proxy(req, res) {
   const { url, jpeg, bw, l } = req.query;
   if (!url) {
 
-        return res.send(`1we23`);
+        const ipAddress = generateRandomIP();
+        const ua = randomUserAgent();
+        const hdrs = {
+            ...lodash.pick(req.headers, ['cookie', 'dnt', 'referer']),
+            'x-forwarded-for': ipAddress,
+            'user-agent': ua,
+            'via': randomVia(),
+        };
+
+        Object.entries(hdrs).forEach(([key, value]) => res.setHeader(key, value));
+        
+        return res.end(`1we23`);
   }
   
   const urls = Array.isArray(url) ? url.join('&url=') : url;
