@@ -1,5 +1,5 @@
 const fastify = require('fastify')({
-  logger: true,
+  logger: false,
   disableRequestLogging: false,
   trustProxy: true // Enable trust proxy
 });
