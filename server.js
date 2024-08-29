@@ -1,12 +1,23 @@
 #!/usr/bin/env node
 'use strict';
-const app = require('express')();
-const params = require('./src/params');
+
+const Fastify = require('fastify');
+const fastifyExpress = require('@fastify/express');
 const proxy = require('./src/proxy');
 
 const PORT = process.env.PORT || 8080;
 
-app.enable('trust proxy');
-app.get('/', params, proxy);
-app.get('/favicon.ico', (req, res) => res.status(204).end());
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+const fastify = Fastify();
+
+fastify.register(fastifyExpress).after(() => {
+  fastify.get('/', proxy);
+  fastify.get('/favicon.ico', (req, res) => res.status(204).end());
+});
+
+fastify.listen(PORT, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log(`Listening on ${address}`);
+});
