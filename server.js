@@ -5,7 +5,7 @@ const Fastify = require('fastify');
 const fastifyExpress = require('@fastify/express');
 const proxy = require('./src/proxy');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 const fastify = Fastify();
 
@@ -14,10 +14,10 @@ fastify.register(fastifyExpress).after(() => {
   fastify.get('/favicon.ico', (req, res) => res.status(204).end());
 });
 
-fastify.listen(PORT, (err, address) => {
+// Start the server
+  fastify.listen({host: '0.0.0.0' , port: PORT }, function (err, address) {
   if (err) {
-    console.error(err);
-    process.exit(1);
+    fastify.log.error(err)
+    process.exit(1)
   }
-  console.log(`Listening on ${address}`);
 });
