@@ -7,7 +7,11 @@ const proxy = require('./src/proxy');
 
 const PORT = process.env.PORT || 3000;
 
-const fastify = Fastify();
+const fastify = Fastify({ 
+  logger: true,
+  disableRequestLogging: true,
+  trustProxy: true // Enable trust proxy
+});
 
 fastify.register(fastifyExpress).after(() => {
   fastify.get('/', proxy);
