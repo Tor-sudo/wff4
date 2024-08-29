@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const { pick } = require('lodash');
-const { generateRandomIP, randomUserAgent } = require('./user.js');
+const { generateRandomIP, randomUserAgent } = require('./user1.js');
 const shouldCompress = require('./shouldCompress');
 const redirect = require('./redirect');
 const compress = require('./compress');
