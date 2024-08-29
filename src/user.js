@@ -1,5 +1,6 @@
 function generateRandomIP() {
-  return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}`;
+  const randomByte = () => Math.floor(Math.random() * 256);
+  return `${randomByte()}.${randomByte()}.${randomByte()}.${randomByte()}`;
 }
 
 function randomUserAgent() {
@@ -10,7 +11,8 @@ function randomUserAgent() {
     // More user agents to increase randomness
   ];
 
-  return userAgents[Math.floor(Math.random() * userAgents.length)];
+  const length = userAgents.length;
+  return userAgents[Math.floor(Math.random() * length)];
 }
 
 module.exports = { generateRandomIP, randomUserAgent };
