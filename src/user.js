@@ -1,3 +1,4 @@
+"use strict";
 function generateRandomIP() {
   const randomByte = () => Math.floor(Math.random() * 256);
   return `${randomByte()}.${randomByte()}.${randomByte()}.${randomByte()}`;
