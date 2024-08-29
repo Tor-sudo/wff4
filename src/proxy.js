@@ -1,3 +1,4 @@
+"use strict";
 const fetch = require('node-fetch');
 const { pick } = require('lodash');
 const { generateRandomIP, randomUserAgent } = require('./user1.js');
